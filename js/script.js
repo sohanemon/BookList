@@ -1,5 +1,6 @@
 // UI Element
 let form = document.querySelector("#book-form");
+let container = document.querySelector(".container");
 
 // Classes
 class Book {
@@ -23,6 +24,14 @@ class UI {
     document.querySelector("#author").value = "";
     document.querySelector("#isbn").value = "";
   }
+  showAlert(msg, className) {
+    let form = document.querySelector("#book-form");
+    let container = document.querySelector(".container");
+    let div = document.createElement("div");
+    div.className = `alert ${className}`;
+    div.appendChild(document.createTextNode(msg));
+    container.insertBefore(div, form);
+  }
 }
 // Events
 form.addEventListener("submit", addNewBook);
@@ -34,7 +43,12 @@ function addNewBook(e) {
   let isbn = document.querySelector("#isbn").value;
   let book = new Book(title, author, isbn);
   let ui = new UI();
-  ui.addToTable(book);
-  ui.clearField(book);
+  if (title === "" || author === "" || isbn === "") {
+    ui.showAlert("Please fiil all forms!", "error");
+  } else {
+    ui.showAlert("Successfully added!", "success");
+    ui.addToTable(book);
+    ui.clearField(book);
+  }
   e.preventDefault();
 }
