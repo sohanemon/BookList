@@ -1,4 +1,4 @@
-.success .errer {
+.success .errer .removed {
   color: white;
   padding: 5px;
   margin: 15 auto;
@@ -8,4 +8,7 @@
 }
 .error {
   background-color: red;
+}
+.removed {
+  background-color: greenyellow;
 }
